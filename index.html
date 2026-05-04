@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт о видеоиграх</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        nav {
+            background-color: #111;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ffcc00;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px 0;
+        }
+        .sidebar {
+            width: 30%;
+            background-color: #222;
+            padding: 20px;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+        .content {
+            width: 70%;
+            background-color: #222;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #666;
+        }
+        .game-card {
+            background-color: #333;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #555;
+        }
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar, .content {
+                width: 100%;
+                margin-right: 0;
+            }
+            nav a {
+                display: inline-block;
+                margin: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Сайт о видеоиграх</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="news.html">Новости</a>
+        <a href="reviews.html">Обзоры</a>
+        <a href="guides.html">Гайды</a>
+        <a href="industry.html">Индустрия</a>
+        <a href="sales.html">Скидки</a>
+    </nav>
+
+    <div class="container">
+        <div class="sidebar">
+            <h2>Добро пожаловать на сайт!</h2>
+            <p>Здесь вы найдёте всё о видеоиграх: новости, обзоры, гайды и многое другое.</p>
+            <button onclick="window.location.href='news.html'">Читать новости</button>
+
+            <div class="top-games">
+                <h2>Топ игр месяца</h2>
+                <div class="game-card">
+                    <h3>Cyberpunk 2077</h3>
+                    <p>Футуристический RPG-экшен в открытом мире.</p>
+                    <button onclick="window.location.href='reviews.html?game=cyberpunk'">Читать обзор</button>
+                </div>
+                <div class="game-card">
+                    <h3>The Witcher 3</h3>
+                    <p>Эпическое фэнтези-приключение Геральта из Ривии.</p>
+                    <button onclick="window.location.href='reviews.html?game=witcher'">Читать обзор</button>
+                </div>
+                <button onclick="window.location.href='sales.html'">Весь топ</button>
+            </div>
+        </div>
+
+
+<div class="content">
+            <h2>Главные новости</h2>
+            <div class="game-card">
+                <h3>Анонс новой игры</h3>
+                <p>Компания CD Projekt Red анонсировала продолжение популярной серии.</p>
+                <button onclick="window.location.href='news.html#newgame'">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Сайт о видеоиграх. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Дополнительные скрипты 
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

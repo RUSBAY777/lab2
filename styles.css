@@ -1,0 +1,113 @@
+/* Общие стили для ВСЕХ страниц */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+nav {
+    background-color: #111;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    padding: 5px 15px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+nav a:hover {
+    background-color: #333;
+    color: #ffcc00;
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    flex-grow: 1;
+    gap: 20px;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.content {
+    flex: 1;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #666;
+    transform: translateY(-2px);
+}
+
+.game-card {
+    background-color: #333;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+    border-left: 3px solid #555;
+}
+
+footer {
+    background-color: #000;
+    color: #aaa;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+}

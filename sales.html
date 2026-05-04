@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игровые скидки</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .discount-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .discount-table th, .discount-table td {
+            border: 1px solid #444;
+            padding: 12px;
+            text-align: left;
+        }
+        .discount-table th {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Акции и скидки</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="news.html">Новости</a>
+        <a href="reviews.html">Обзоры</a>
+        <a href="guides.html">Гайды</a>
+        <a href="industry.html">Индустрия</a>
+        <a href="sales.html">Скидки</a>
+    </nav>
+
+    <div class="container">
+        <div class="content">
+            <table class="discount-table">
+                <tr>
+                    <th>Игра</th>
+                    <th>Скидка</th>
+                    <th>Цена</th>
+                    <th>Действие</th>
+                </tr>
+                <tr>
+                    <td>Cyberpunk 2077</td>
+                    <td>50%</td>
+                    <td>1499 ₽</td>
+                    <td><button>Купить</button></td>
+                </tr>
+                <tr>
+                    <td>The Witcher 3</td>
+                    <td>70%</td>
+                    <td>599 ₽</td>
+                    <td><button>Купить</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="sidebar">
+            <div class="game-card">
+                <h3>Скоро закончится</h3>
+                <p>Red Dead Redemption 2 -60%</p>
+                <button>Успеть купить</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Сайт о видеоиграх</p>
+    </footer>
+</body>
+</html>

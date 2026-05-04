@@ -1,0 +1,44 @@
+services:
+  # Сервис приложения (Node.js)
+  app:
+    build:
+      context: .                      # Путь к Dockerfile
+      dockerfile: docker/Dockerfile   # Файл сборки образа
+    ports:
+      - "${PORT:-3000}:3000"          # Проброс порта: хост:контейнер
+    env_file:
+      - .env                          # Переменные окружения из файла
+    environment:
+      DB_HOST: postgres               # Имя хоста БД (совпадает с именем сервиса)
+      DB_PORT: 5432                   # Порт PostgreSQL
+    depends_on:
+      - postgres                      # Ждём запуска БД
+    volumes:
+      - .:/app                        # Монтируем код в контейнер
+      - /app/node_modules             # Не перезаписываем node_modules
+
+  # Сервис базы данных (PostgreSQL)
+  postgres:
+    image: postgres:16-alpine         # Лёгкий образ PostgreSQL
+    environment:
+      POSTGRES_USER: ${DB_USER}       # Пользователь БД
+      POSTGRES_PASSWORD: ${DB_PASSWORD}  # Пароль
+      POSTGRES_DB: ${DB_NAME}         # Имя БД
+    ports:
+      - "5432:5432"                   # Проброс порта PostgreSQL
+    volumes:
+      - postgres_data:/var/lib/postgresql/data   # Постоянное хранилище данных
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro  # Автозапуск SQL-скрипта
+
+volumes:
+  postgres_data:  # Именованный том для сохранения данных БД
+
+
+
+
+
+
+
+
+
+  

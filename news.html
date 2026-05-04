@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости игр</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Новости игровой индустрии</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="news.html">Новости</a>
+        <a href="reviews.html">Обзоры</a>
+        <a href="guides.html">Гайды</a>
+        <a href="industry.html">Индустрия</a>
+        <a href="sales.html">Скидки</a>
+    </nav>
+
+    <div class="container">
+        <div class="content">
+            <article class="game-card" id="eldenring">
+                <h2>Elden Ring: Shadow of the Erdtree</h2>
+                <p>Дата выхода DLC назначена на 21 июня 2024 года.</p>
+                <button onclick="location.href='reviews.html?game=eldenring'">Читать обзор</button>
+            </article>
+            
+            <article class="game-card">
+                <h2>Анонс GTA 6</h2>
+                <p>Rockstar подтвердила разработку новой части.</p>
+                <button onclick="location.href='reviews.html?game=gta6'">Подробнее</button>
+            </article>
+        </div>
+
+        <div class="sidebar">
+            <h2>Самые популярные</h2>
+            <div class="game-card">
+                <h3>Cyberpunk 2077</h3>
+                <p>Обновление 2.1 изменило игру</p>
+                <button onclick="location.href='reviews.html?game=cyberpunk'">Читать</button>
+            </div>
+            <button onclick="location.href='index.html'">На главную</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Сайт о видеоиграх</p>
+    </footer>
+</body>
+</html>

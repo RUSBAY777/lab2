@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обзоры игр</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.min.js"></script>
+    <style>
+        /* Общие стили кнопок */
+        button {
+            background-color: #4CAF50; 
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background-color: #45a049; 
+            transform: translateY(-2px);
+        }
+        
+
+        .game-list .btn-hide {
+            background-color: #f44336; 
+        }
+        
+        .game-list .btn-hide:hover {
+            background-color: #d32f2f; 
+        }
+        
+        /* Стили для форм */
+        .game-card {
+            background-color: #333;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            background-color: #444;
+            border: 1px solid #555;
+            color: white;
+            border-radius: 4px;
+        }
+        
+        textarea {
+            min-height: 100px;
+        }
+        
+        /* Стили для списка игр */
+        .game-item {
+            background-color: #444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Обзоры видеоигр</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="news.html">Новости</a>
+        <a href="reviews.html">Обзоры</a>
+        <a href="guides.html">Гайды</a>
+        <a href="industry.html">Индустрия</a>
+        <a href="sales.html">Скидки</a>
+    </nav>
+
+    <div class="container">
+        <div class="content" id="app">
+            <!-- Форма для отзывов -->
+            <div class="game-card">
+                <h2>Оставить отзыв</h2>
+                <form @submit.prevent="submitReview">
+                    <input v-model="newReview.game" placeholder="Название игры" required>
+                    <textarea v-model="newReview.text" placeholder="Ваш отзыв" required></textarea>
+                    <select v-model="newReview.rating">
+                        <option value="5">5 ★</option>
+                        <option value="4">4 ★</option>
+                        <option value="3">3 ★</option>
+                        <option value="2">2 ★</option>
+                        <option value="1">1 ★</option>
+                    </select>
+                    <button type="submit">Отправить отзыв</button>
+                </form>
+            </div>
+
+            <!-- Поиск обзоров -->
+            <div class="game-card">
+                <h2>Поиск обзоров</h2>
+                <form>
+                    <input type="text" placeholder="Название игры">
+                    <select>
+                        <option>Все жанры</option>
+                        <option>RPG</option>
+                        <option>Шутеры</option>
+                    </select>
+                    <button type="submit">Найти обзоры</button>
+                </form>
+            </div>
+
+            <!-- Форма проверки игр -->
+            <div id="labWorkSection" class="game-card">
+                <h2>Форма проверки игр</h2>
+                
+                <div class="game-item">
+                    <h3 id="gameTitle">Cyberpunk 2077</h3>
+                    <p>Один из самых обсуждаемых RPG-экшенов последних лет.</p>
+                </div>
+                
+                <button id="toggleFormBtn">Показать/Скрыть форму проверки</button>
+                
+                <div id="customForm" class="hidden">
+                    <input type="text" id="gameInput" placeholder="Введите название игры">
+                    <button id="checkGameBtn">Проверить игру</button>
+                    <div id="validationResult"></div>
+                </div>
+            </div>
+
+            <!-- Обзор игры -->
+            <div class="game-card">
+                <h3>Обзор Cyberpunk 2077</h3>
+                <p>После всех обновлений игра стала значительно лучше...</p>
+                <button>Читать полностью</button>
+            </div>
+
+            <!-- Фильтр игр -->
+            <div class="game-card">
+                <h2>Фильтр игр</h2>
+                <select v-model="selectedGenre">
+                    <option>Все жанры</option>
+                    <option>RPG</option>
+                    <option>Action</option>
+                    <option>Adventure</option>
+                </select>
+                <button @click="showGameList = !showGameList">
+                    {{ showGameList ? 'Скрыть список' : 'Показать список' }}
+                </button>
+            </div>
+
+            <!-- Список игр -->
+            <div class="game-card game-list" v-if="showGameList">
+                <h2>Список игр ({{ filteredGames().length }})</h2>
+                <div v-for="game in filteredGames()" :key="game.id" class="game-item">
+                    <h3>{{ game.name }} - {{ game.rating }}★</h3>
+                    <p>Жанр: {{ game.genre }}</p>
+                    <button @click="toggleGameVisibility(game.id)" class="btn-hide">
+                        {{ game.visible ? 'Скрыть' : 'Показать' }}
+                    </button>
+                    <div v-if="game.visible">
+                        <p>Игра видна в списке</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="game-card">
+                <h3>Лучшие обзоры</h3>
+                <p>The Witcher 3 - 10/10</p>
+                <p>Elden Ring - 9.5/10</p>
+                <button>Все рейтинги</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Сайт о видеоиграх</p>
+    </footer>
+
+    <script>
+        function initGameCheckForm() {
+            const toggleBtn = document.getElementById('toggleFormBtn');
+            const checkForm = document.getElementById('customForm');
+            const gameInput = document.getElementById('gameInput');
+            const checkBtn = document.getElementById('checkGameBtn');
+            const resultDiv = document.getElementById('validationResult');
+            
+            toggleBtn.onclick = function() {
+                checkForm.style.display = checkForm.style.display === 'none' ? 'block' : 'none';
+            };
+            
+            checkBtn.onclick = function() {
+                const input = gameInput.value.trim();
+                const games = ['Cyberpunk 2077', 'The Witcher 3', 'Elden Ring'];
+                
+                resultDiv.innerHTML = games.includes(input) 
+                    ? '<p style="color:green;"> Это популярная игра! Отличный выбор!</p>' 
+                    : '<p style="color:orange;"> Эта игра не входит в наш список самых популярных игр. Возможно, это скрытый шедевр!</p>';
+            };
+            
+            checkForm.style.display = 'none';
+        }
+
+        const { createApp, ref } = Vue;
+
+        createApp({
+            setup() {
+                const games = ref([
+                    { id: 1, name: "Cyberpunk 2077", rating: 4.5, genre: "RPG", visible: true },
+                    { id: 2, name: "The Witcher 3", rating: 5, genre: "RPG", visible: true },
+                    { id: 3, name: "Elden Ring", rating: 5, genre: "RPG", visible: true },
+                    { id: 4, name: "Red Dead Redemption 2", rating: 5, genre: "Adventure", visible: true },
+                    { id: 5, name: "GTA V", rating: 4.5, genre: "Action", visible: true },
+                    { id: 6, name: "Stray", rating: 4, genre: "Adventure", visible: true },
+                    { id: 7, name: "Hogwarts Legacy", rating: 4, genre: "RPG", visible: true },
+                    { id: 8, name: "God of War", rating: 5, genre: "Action", visible: true },
+                    { id: 9, name: "Horizon Forbidden West", rating: 4.5, genre: "Action", visible: true },
+                    { id: 10, name: "Starfield", rating: 3.5, genre: "RPG", visible: true }
+                ]);
+
+                const newReview = ref({
+                    game: "",
+                    text: "",
+                    rating: 5
+                });
+
+                const showGameList = ref(false);
+                const selectedGenre = ref("Все жанры");
+
+                const toggleGameVisibility = (id) => {
+                    const game = games.value.find(g => g.id === id);
+                    if (game) game.visible = !game.visible;
+                };
+
+                const submitReview = () => {
+                    alert(`Отзыв отправлен: ${newReview.value.game} (${newReview.value.rating}★)`);
+                    newReview.value = { game: "", text: "", rating: 5 };
+                };
+
+                const filteredGames = () => {
+                    if (selectedGenre.value === "Все жанры") return games.value;
+                    return games.value.filter(game => game.genre === selectedGenre.value);
+                };
+
+                return {
+                    games,
+                    newReview,
+                    showGameList,
+                    selectedGenre,
+                    toggleGameVisibility,
+                    submitReview,
+                    filteredGames
+                };
+            }
+        }).mount('#app');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initGameCheckForm();
+        });
+    </script>
+</body>
+</html>

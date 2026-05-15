@@ -1,0 +1,201 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+nav {
+    background-color: #111;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    padding: 5px 15px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+    background-color: #333;
+    color: #ffcc00;
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    width: 100%;
+    flex-grow: 1;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.content {
+    flex: 1;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+button,
+.button-link {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+button:hover,
+.button-link:hover {
+    background-color: #666;
+    transform: translateY(-2px);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.game-card {
+    background-color: #333;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+    border-left: 3px solid #555;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    background-color: #444;
+    border: 1px solid #555;
+    color: white;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    min-height: 100px;
+}
+
+.review-item {
+    border-bottom: 1px solid #555;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.actions form {
+    margin: 0;
+}
+
+.danger {
+    background-color: #a32a2a;
+}
+
+.error-box {
+    background: #6a2323;
+    border: 1px solid #a32a2a;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.hint {
+    margin: 8px 0;
+    padding: 8px;
+    background: #2a2a2a;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.hint code {
+    font-size: 0.9em;
+    background: #1a1a1a;
+    padding: 1px 5px;
+    border-radius: 3px;
+}
+
+.discount-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.discount-table th,
+.discount-table td {
+    border: 1px solid #444;
+    padding: 12px;
+    text-align: left;
+}
+
+.discount-table th {
+    background-color: #333;
+}
+
+footer {
+    background-color: #000;
+    color: #aaa;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+}

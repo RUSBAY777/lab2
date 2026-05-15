@@ -1,0 +1,90 @@
+<%- include("../partials/header", { headerTitle: "Обзоры видеоигр" }) %>
+<div class="container">
+  <div class="content">
+    <div class="game-card">
+      <h2><%= editingReview ? "Редактировать отзыв" : "Добавить отзыв" %></h2>
+
+      <% if (errors && errors.length) { %>
+        <div class="error-box">
+          <% errors.forEach((error) => { %>
+            <p><%= error %></p>
+          <% }) %>
+        </div>
+      <% } %>
+
+      <form method="post" action="<%= editingReview ? `/reviews/${editingReview.id}?_method=PUT` : '/reviews' %>">
+        <label for="gameId">Игра</label>
+        <% if (!games.length) { %>
+          <p class="hint">Нет игр в базе — выполните инициализацию (<code>sql/init.sql</code>) или запустите контейнер с PostgreSQL.</p>
+          <select name="gameId" id="gameId" disabled></select>
+        <% } else { %>
+          <select name="gameId" id="gameId" required <%= dbUnavailable ? "disabled" : "" %>>
+            <% games.forEach((game) => { %>
+              <option value="<%= game.id %>" <%= Number(formData.gameId) === Number(game.id) ? "selected" : "" %>>
+                <%= game.title %> (<%= game.genre_name %>, <%= game.release_year %>)
+              </option>
+            <% }) %>
+          </select>
+        <% } %>
+
+        <label for="authorName">Автор</label>
+        <input id="authorName" name="authorName" value="<%= formData.authorName || '' %>" required <%= dbUnavailable ? "disabled" : "" %> />
+
+        <label for="reviewText">Текст отзыва</label>
+        <textarea id="reviewText" name="reviewText" required <%= dbUnavailable ? "disabled" : "" %>><%= formData.reviewText || '' %></textarea>
+
+        <label for="rating">Оценка</label>
+        <select name="rating" id="rating" required <%= dbUnavailable ? "disabled" : "" %>>
+          <% for(let i=1; i<=5; i+=1) { %>
+            <option value="<%= i %>" <%= Number(formData.rating || 5) === i ? "selected" : "" %>><%= i %> ★</option>
+          <% } %>
+        </select>
+
+        <button type="submit" <%= dbUnavailable ? "disabled" : "" %>><%= editingReview ? "Сохранить изменения" : "Создать отзыв" %></button>
+      </form>
+    </div>
+
+    <div class="game-card">
+      <h2>Поиск обзоров</h2>
+      <form>
+        <input type="text" placeholder="Название игры" />
+        <select>
+          <option>Все жанры</option>
+          <option>RPG</option>
+          <option>Шутеры</option>
+        </select>
+        <button type="button">Найти обзоры</button>
+      </form>
+    </div>
+
+    <div class="game-card">
+      <h2>Отзывы</h2>
+      <% if (!reviews.length) { %>
+        <p>Пока нет отзывов.</p>
+      <% } %>
+      <% reviews.forEach((review) => { %>
+        <article class="review-item">
+          <h3><%= review.game_title %> — <%= review.rating %>★</h3>
+          <p><strong>Автор:</strong> <%= review.author_name %></p>
+          <p><%= review.review_text %></p>
+          <div class="actions">
+            <a class="button-link" href="/reviews?edit=<%= review.id %>">Редактировать</a>
+            <form method="post" action="/reviews/<%= review.id %>?_method=DELETE">
+              <button type="submit" class="danger">Удалить</button>
+            </form>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="game-card">
+      <h3>Лучшие обзоры</h3>
+      <p>The Witcher 3 - 10/10</p>
+      <p>Elden Ring - 9.5/10</p>
+      <a class="button-link full-width" href="#">Все рейтинги</a>
+    </div>
+  </div>
+</div>
+<%- include("../partials/footer") %>

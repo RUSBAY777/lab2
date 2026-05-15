@@ -1,0 +1,33 @@
+<%- include("../partials/header", { headerTitle: "Сайт о видеоиграх" }) %>
+<div class="container">
+  <div class="sidebar">
+    <h2>Добро пожаловать на сайт!</h2>
+    <p>Здесь вы найдёте всё о видеоиграх: новости, обзоры, гайды и многое другое.</p>
+    <a class="button-link full-width" href="/news">Читать новости</a>
+
+    <div class="top-games">
+      <h2>Топ игр месяца</h2>
+      <div class="game-card">
+        <h3>Cyberpunk 2077</h3>
+        <p>Футуристический RPG-экшен в открытом мире.</p>
+        <a class="button-link full-width" href="/reviews">Читать обзор</a>
+      </div>
+      <div class="game-card">
+        <h3>The Witcher 3</h3>
+        <p>Эпическое фэнтези-приключение Геральта из Ривии.</p>
+        <a class="button-link full-width" href="/reviews">Читать обзор</a>
+      </div>
+      <a class="button-link full-width" href="/sales">Весь топ</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2>Главные новости</h2>
+    <div class="game-card">
+      <h3>Анонс новой игры</h3>
+      <p>Компания CD Projekt Red анонсировала продолжение популярной серии.</p>
+      <a class="button-link full-width" href="/news">Подробнее</a>
+    </div>
+  </div>
+</div>
+<%- include("../partials/footer") %>

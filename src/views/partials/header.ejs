@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= pageTitle %></title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1><%= headerTitle || "Сайт о видеоиграх" %></h1>
+  </header>
+  <nav>
+    <a href="/" class="<%= path === '/' ? 'active' : '' %>">Главная</a>
+    <a href="/news" class="<%= path === '/news' ? 'active' : '' %>">Новости</a>
+    <a href="/reviews" class="<%= path === '/reviews' ? 'active' : '' %>">Обзоры</a>
+    <a href="/guides" class="<%= path === '/guides' ? 'active' : '' %>">Гайды</a>
+    <a href="/industry" class="<%= path === '/industry' ? 'active' : '' %>">Индустрия</a>
+    <a href="/sales" class="<%= path === '/sales' ? 'active' : '' %>">Скидки</a>
+  </nav>
